@@ -1,0 +1,59 @@
+{% extends 'homesite/base.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 mx-auto" style="margin-top: 70px">
+                <form action="{% url 'home' %}" method="post">
+                    {% csrf_token %}
+                    <div class="form-group row">
+                       <label for="example-email-input" class="col-2 col-form-label">Level</label>
+
+                        <select name="level">
+                                    <option value = "1">one</option>
+                                    <option value = "2">two</option>
+                                    <option value = "3">three</option>
+                                    <option value = "4">four</option>
+                                </select>
+                    </div>
+                    <div class="form-group row">
+                       <label  class="col-2 col-form-label">Fabric Type</label>
+
+                        <select name="fabric_type" >
+                                    <option value = "white">white</option>
+                                    <option value = "grey">grey</option>
+                                    <option value = "black">black</option>
+                                </select>
+                    </div>
+                    <div class="form-group row">
+                       <label class="col-2 col-form-label">Gloves Type</label>
+
+                        <select name="glove_type" >
+                                    <option value = "White Single">White Single</option>
+                                    <option value = "White Double">White Double</option>
+                                    <option value = "10' nevy blue double">10' nevy blue double</option>
+                                </select>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-2 col-form-label">Name</label>
+                        <div class="col-10">
+                            <input name='name' class="form-control" type="text">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-2 col-form-label">Quantity</label>
+                        <div class="col-10">
+                            <input name='quantity' class="form-control" type="number">
+                        </div>
+                    </div>
+                    <div class="pull-right">
+                        <button type="submit" class="btn btn-primary float-right">Submit</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
