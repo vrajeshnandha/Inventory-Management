@@ -14,6 +14,7 @@ class Fabric(models.Model):
 class Cutting(models.Model):
     fabric_name = models.CharField(max_length=100)
     cutting_type = models.CharField(max_length=200)
+    weight = models.FloatField()
     quantity = models.IntegerField()
 
     def __str__(self):

@@ -1,0 +1,19 @@
+{% extends 'homesite/base.html' %}
+
+{% block content %}
+    <h1>List of Fabric</h1>
+    <table border="1" width="600">
+        <tr>
+            <td>Fabric Name</td>
+            <td>Quantity (Kgs)</td>
+        </tr>
+
+        {% for f in fabric %}
+            <tr>
+                <td>{{ f.fabric_name }}</td>
+                <td>{{ f.quantity }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}
