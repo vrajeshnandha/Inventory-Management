@@ -4,6 +4,9 @@
     <list default="true" id="136d21ce-1a45-4e30-b024-519866a85fb2" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/homesite/computation.py" beforeDir="false" afterPath="$PROJECT_DIR$/homesite/computation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/homesite/templates/homesite/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/homesite/templates/homesite/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/homesite/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/homesite/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +24,9 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1Zbvmypx5FYLsMooHCBSzccCcdF" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -30,6 +36,7 @@
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last.edited.regexp" value="Sample Text" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/homesite/static/homesite/images" />
@@ -84,6 +91,7 @@
       <workItem from="1585645609404" duration="2405000" />
       <workItem from="1585728948008" duration="3732000" />
       <workItem from="1585817850805" duration="219000" />
+      <workItem from="1586164911944" duration="1524000" />
     </task>
     <servers />
   </component>
@@ -99,9 +107,9 @@
       <screen x="65" y="24" width="1855" height="1056" />
     </state>
     <state x="486" y="174" key="SettingsEditor/65.24.1855.1056@65.24.1855.1056" timestamp="1585128057296" />
-    <state x="654" y="381" key="com.intellij.ide.util.TipDialog" timestamp="1585728947901">
+    <state x="654" y="381" key="com.intellij.ide.util.TipDialog" timestamp="1586164937389">
       <screen x="65" y="24" width="1855" height="1056" />
     </state>
-    <state x="654" y="381" key="com.intellij.ide.util.TipDialog/65.24.1855.1056@65.24.1855.1056" timestamp="1585728947901" />
+    <state x="654" y="381" key="com.intellij.ide.util.TipDialog/65.24.1855.1056@65.24.1855.1056" timestamp="1586164937389" />
   </component>
 </project>

@@ -1,20 +1,32 @@
 from homesite.models import Cutting, Fabric
 
 
-def level_1(fabric_type, glove_type, Quantity, name):
-    print(fabric_type)
-    print(glove_type)
+def fabric_computation(fabric_type, quantity):
+    fabric = Fabric.objects.get(fabric_name=fabric_type)
+    q = fabric.quantity
+
+    fabric.quantity = q + float(quantity)
+    fabric.save()
+
+
+def cutting_computation(fabric_type, glove_type, quantity, name):
     cutting = Cutting.objects.get(fabric_name=fabric_type, cutting_type=glove_type)
     q = cutting.quantity
     w = cutting.weight
 
-    cutting.quantity = q + int(Quantity)
-    cutting.save()
+    cutting.quantity = q + int(quantity)
 
     fabric = Fabric.objects.get(fabric_name=fabric_type)
     q = fabric.quantity
 
-    fabric.quantity = q - float(Quantity)*(w/1000)
-    fabric.save()
+    if (q - float(quantity)*(w/1000)) >= 0:
+        fabric.quantity = q - float(quantity)*(w/1000)
+        fabric.save()
+        cutting.save()
+        return 1
+
+    else:
+        return 0
+
 
 

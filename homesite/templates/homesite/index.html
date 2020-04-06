@@ -7,25 +7,29 @@
                 <form action="{% url 'addstock' %}" method="post">
                     {% csrf_token %}
                     <div class="form-group row">
-                       <label for="example-email-input" class="col-2 col-form-label">Level</label>
+                        <label for="example-email-input" class="col-2 col-form-label">Level</label>
 
                         <select name="level">
-                                    <option value = "Cutting">Cutting</option>
-                                </select>
+                            <option disabled selected value> -- select an option -- </option>
+                            <option value = "Fabric">Fabric</option>
+                            <option value = "Cutting">Cutting</option>
+                        </select>
                     </div>
                     <div class="form-group row">
-                       <label  class="col-2 col-form-label">Fabric Type</label>
+                        <label  class="col-2 col-form-label">Fabric Type</label>
 
                         <select name="fabric_type" >
+                            <option disabled selected value> -- select an option -- </option>
                             {% for f in fabric %}
                                 <option value ="{{ f.fabric_name }}">{{ f.fabric_name }}</option>
                             {% endfor %}
                         </select>
                     </div>
                     <div class="form-group row">
-                       <label class="col-2 col-form-label">Gloves Type</label>
+                        <label class="col-2 col-form-label">Gloves Type</label>
 
                         <select name="glove_type" >
+                            <option disabled selected value> -- select an option -- </option>
                             {% for c in cutting %}
                                 <option value ="{{ c.cutting_type }}">{{ c.cutting_type }}</option>
                             {% endfor %}
