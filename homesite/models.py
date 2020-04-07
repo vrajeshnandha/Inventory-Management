@@ -28,6 +28,7 @@ class StockEntry(models.Model):
     cutting_type = models.CharField(max_length=200)
     name = models.CharField(max_length=200)
     quantity = models.FloatField()
+    date = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.entry_id

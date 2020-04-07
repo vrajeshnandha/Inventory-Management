@@ -27,6 +27,6 @@ class AddStockForm(forms.Form):
 
 # solve this issue
 class deleteEntryForm(forms.Form):
-    entry = StockEntry.objects.all()
-    ENTRY_CHOICES = [(i.entry_id, i.entry_id) for i in entry]
-    entry_id = forms.CharField(widget=forms.Select(choices=ENTRY_CHOICES))
+    # entry = StockEntry.objects.all()
+    # ENTRY_CHOICES = [(i.entry_id, i.entry_id) for i in entry]
+    entry_id = forms.CharField()

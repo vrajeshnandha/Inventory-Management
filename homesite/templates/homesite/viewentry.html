@@ -5,6 +5,7 @@
     <table border="1" width="600">
         <tr>
             <td>Entry Id</td>
+            <td>Date</td>
             <td>Level</td>
             <td>Fabric Name</td>
             <td>Cutting Type</td>
@@ -15,6 +16,7 @@
         {% for i in stockentry %}
             <tr>
                 <td>{{ i.entry_id }}</td>
+                <td>{{ i.date }}</td>
                 <td>{{ i.level }}</td>
                 <td>{{ i.fabric_name }}</td>
                 <td>{{ i.cutting_type }}</td>
