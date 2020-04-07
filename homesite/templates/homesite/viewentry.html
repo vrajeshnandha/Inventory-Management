@@ -1,0 +1,26 @@
+{% extends 'homesite/base.html' %}
+
+{% block content %}
+    <h1>Previous Inputs</h1>
+    <table border="1" width="600">
+        <tr>
+            <td>Entry Id</td>
+            <td>Level</td>
+            <td>Fabric Name</td>
+            <td>Cutting Type</td>
+            <td>Name</td>
+            <td>Quantity</td>
+        </tr>
+
+        {% for i in stockentry %}
+            <tr>
+                <td>{{ i.entry_id }}</td>
+                <td>{{ i.level }}</td>
+                <td>{{ i.fabric_name }}</td>
+                <td>{{ i.cutting_type }}</td>
+                <td>{{ i.name }}</td>
+                <td>{{ i.quantity }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

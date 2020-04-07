@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .computation import *
-from homesite.models import Cutting, Fabric
+from .models import Cutting, Fabric, StockEntry
+from .forms import ViewStockForm, AddStockForm, deleteEntryForm
 
 
 def home(request):
@@ -8,51 +9,77 @@ def home(request):
 
 
 def addStock(request):
-    fabric = Fabric.objects.all()
-    cutting = Cutting.objects.all()
-    context = {'fabric': fabric, 'cutting': cutting}
-    
     if request.method == 'GET':
-        return render(request, 'homesite/index.html', context)
+        form = AddStockForm()
+        return render(request, 'homesite/index.html', {'form': form})
 
     else:
-        level = request.POST.get('level')
-        fabric_type = request.POST.get('fabric_type')
-        glove_type = request.POST.get('glove_type')
-        name = request.POST.get('name')
-        quantity = request.POST.get('quantity')
+        form = AddStockForm(request.POST)
+        if form.is_valid():
+            level = form.cleaned_data['level']
+            fabric_type = form.cleaned_data['fabric_type']
+            glove_type = form.cleaned_data['glove_type']
+            name = form.cleaned_data['name']
+            quantity = form.cleaned_data['quantity']
+            stock_entry(level, fabric_type, glove_type, name, quantity)
 
-        if level is None:
-            error = "Please select a level"
-            context = {'error': error}
-            return render(request, 'homesite/error.html', context)
+            form = AddStockForm()
+            msg = ""
 
-        if level == "Fabric":
-            fabric_computation(fabric_type, quantity)
+            if level == "Fabric":
+                fabric_computation(fabric_type, quantity)
 
-        if level == "Cutting":
-            flag = cutting_computation(fabric_type, glove_type, quantity, name)
-            if flag == 0:
-                error = "Fabric is not sufficient for cutting"
-                context = {'error': error}
-                return render(request, 'homesite/error.html', context)
+            if level == "Cutting":
+                flag = cutting_computation(fabric_type, glove_type, quantity, name)
+                if flag == 0:
+                    msg = "Fabric is not sufficient for cutting"
+                elif flag == 2:
+                    msg = "Glove type is not available for that fabric"
 
-        return render(request, 'homesite/index.html', context)
+            if msg == "":
+                msg = "submission successful"
+
+            return render(request, 'homesite/index.html', {'form': form, 'msg': msg})
 
 
 def viewStock(request):
-    return render(request, 'homesite/viewstock.html')
+    if request.method == 'GET':
+        form = ViewStockForm()
+        return render(request, 'homesite/viewstock.html', {'form': form})
+
+    else:
+        form = ViewStockForm(request.POST)
+        if form.is_valid():
+            level = form.cleaned_data['level']
+
+            if level == 'Fabric':
+                fabric = Fabric.objects.all()
+                context = {'fabric': fabric}
+                return render(request, 'homesite/fabric.html', context)
+
+            elif level == 'Cutting':
+                cutting = Cutting.objects.all()
+                context = {'cutting': cutting}
+                return render(request, 'homesite/cutting.html', context)
 
 
-def view(request):
-    level = request.POST.get('level')
+def viewEntry(request):
+    stockentry = StockEntry.objects.all()
+    context = {'stockentry': stockentry}
+    return render(request, 'homesite/viewentry.html', context)
 
-    if level == 'Fabric':
-        fabric = Fabric.objects.all()
-        context = {'fabric': fabric}
-        return render(request, 'homesite/fabric.html', context)
 
-    elif level == 'Cutting':
-        cutting = Cutting.objects.all()
-        context = {'cutting': cutting}
-        return render(request, 'homesite/cutting.html', context)
+def deleteEntry(request):
+    if request.method == 'GET':
+        form = deleteEntryForm()
+        return render(request, 'homesite/deleteentry.html', {'form': form})
+
+    else:
+        form = deleteEntryForm(request.POST)
+        if form.is_valid():
+            entry_id = form.cleaned_data['entry_id']
+            entry = StockEntry.objects.get(entry_id=entry_id)
+            entry.delete()
+            msg = "deleted successfully"
+            form = deleteEntryForm()
+            return render(request, 'homesite/deleteentry.html', {'form': form, 'msg': msg})
