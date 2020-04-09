@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-6 mx-auto" style="margin-top: 70px">
-                <form action="{% url 'addstock' %}" method="post">
+                <form method="post">
                     {% csrf_token %}
                     {{ form.as_p }}
                     <div class="pull-right">

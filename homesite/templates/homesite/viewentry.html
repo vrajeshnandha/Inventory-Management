@@ -1,7 +1,21 @@
 {% extends 'homesite/base.html' %}
 
 {% block content %}
-    <h1>Previous Inputs</h1>
+     <div class="container">
+        <div class="row">
+            <div class="col-sm-6 mx-auto" style="margin-top: 70px">
+                <form  method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <div class="pull-right">
+                        <button type="submit" class="btn btn-primary float-right">Submit</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+    </div>
     <table border="1" width="600">
         <tr>
             <td>Entry Id</td>

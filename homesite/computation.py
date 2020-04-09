@@ -41,4 +41,31 @@ def cutting_computation(fabric_type, glove_type, quantity, name):
         return 0
 
 
+def view_entry(level, fabric_type, glove_type, name):
+    stockentry = StockEntry.objects.all()
+
+    if level != "":
+        stockentry = stockentry.filter(level=level)
+    #
+    if fabric_type != "":
+        stockentry = stockentry.filter(fabric_name=fabric_type)
+
+    if glove_type != "":
+        stockentry = stockentry.filter(cutting_type=glove_type)
+
+    if name != "":
+        stockentry = stockentry.filter(name=name)
+
+    return stockentry
+
+
+def delete_entry(entry_id):
+    try:
+        entry = StockEntry.objects.get(entry_id=entry_id)
+    except StockEntry.DoesNotExist:
+        return 0
+
+    entry.delete()
+    return 1
+
 

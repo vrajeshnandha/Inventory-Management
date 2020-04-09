@@ -1,8 +1,6 @@
 from django.db import models
 
 
-# Create your models here.
-
 class Fabric(models.Model):
     fabric_name = models.CharField(max_length=100)
     quantity = models.FloatField()
@@ -32,3 +30,12 @@ class StockEntry(models.Model):
 
     def __str__(self):
         return self.entry_id
+
+
+class Worker(models.Model):
+    name = models.CharField(max_length=100)
+    rate = models.FloatField()
+    balance = models.FloatField()
+
+    def __str__(self):
+        return self.name

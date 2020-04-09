@@ -1,5 +1,6 @@
 from django import forms
 from .models import Fabric, Cutting, StockEntry
+from django.contrib.admin.widgets import AdminDateWidget
 
 LEVEL_CHOICES = [
     ('Fabric', 'Fabric'),
@@ -26,7 +27,16 @@ class AddStockForm(forms.Form):
 
 
 # solve this issue
-class deleteEntryForm(forms.Form):
+class DeleteEntryForm(forms.Form):
     # entry = StockEntry.objects.all()
     # ENTRY_CHOICES = [(i.entry_id, i.entry_id) for i in entry]
     entry_id = forms.CharField()
+
+
+# implement for date also
+class ViewEntryForm(forms.Form):
+    level = forms.CharField(widget=forms.Select(choices=[('', '---SELECT ONE---'), ] + LEVEL_CHOICES), required=False)
+    fabric_type = forms.CharField(widget=forms.Select(choices=[('', '---SELECT ONE---'), ] + FABRIC_CHOICES),required=False)
+    glove_type = forms.CharField(widget=forms.Select(choices=[('', '---SELECT ONE---'), ] + GLOVES_CHOICES),required=False)
+    name = forms.CharField(required=False)
+    # date = forms.DateField(widget=AdminDateWidget, required=False)

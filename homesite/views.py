@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .computation import *
-from .models import Cutting, Fabric, StockEntry
-from .forms import ViewStockForm, AddStockForm, deleteEntryForm
+from .forms import ViewStockForm, AddStockForm, DeleteEntryForm, ViewEntryForm
+from homesite.models import StockEntry
 
 
 def home(request):
@@ -63,23 +63,39 @@ def viewStock(request):
                 return render(request, 'homesite/cutting.html', context)
 
 
+# implement for date also
 def viewEntry(request):
-    stockentry = StockEntry.objects.all()
-    context = {'stockentry': stockentry}
-    return render(request, 'homesite/viewentry.html', context)
+    if request.method == 'GET':
+        form = ViewEntryForm()
+        return render(request, 'homesite/viewstock.html', {'form': form})
+
+    else:
+        form = ViewEntryForm(request.POST)
+        if form.is_valid():
+            level = form.cleaned_data['level']
+            fabric_type = form.cleaned_data['fabric_type']
+            glove_type = form.cleaned_data['glove_type']
+            name = form.cleaned_data['name']
+            print(level)
+            # date = form.cleaned_data['date']
+
+            stockentry = view_entry(level, fabric_type, glove_type, name)
+            form = ViewEntryForm()
+            return render(request, 'homesite/viewentry.html', {'form': form, 'stockentry': stockentry})
 
 
 def deleteEntry(request):
     if request.method == 'GET':
-        form = deleteEntryForm()
+        form = DeleteEntryForm()
         return render(request, 'homesite/deleteentry.html', {'form': form})
 
     else:
-        form = deleteEntryForm(request.POST)
+        form = DeleteEntryForm(request.POST)
         if form.is_valid():
             entry_id = form.cleaned_data['entry_id']
-            entry = StockEntry.objects.get(entry_id=entry_id)
-            entry.delete()
-            msg = "deleted successfully"
-            form = deleteEntryForm()
+            if delete_entry(entry_id) == 0:
+                msg = "entry id does not exist"
+            else:
+                msg = "deleted successfully"
+            form = DeleteEntryForm()
             return render(request, 'homesite/deleteentry.html', {'form': form, 'msg': msg})
