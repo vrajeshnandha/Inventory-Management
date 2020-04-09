@@ -2,12 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4335e7a9-a99b-46ee-a307-f9fd39ae3c34" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/homesite/migrations/0005_worker.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/homesite/templates/homesite/worker.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/homesite/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/homesite/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/homesite/computation.py" beforeDir="false" afterPath="$PROJECT_DIR$/homesite/computation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/homesite/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/homesite/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/homesite/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/homesite/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/homesite/templates/homesite/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/homesite/templates/homesite/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/homesite/templates/homesite/viewentry.html" beforeDir="false" afterPath="$PROJECT_DIR$/homesite/templates/homesite/viewentry.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/homesite/templates/homesite/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/homesite/templates/homesite/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/homesite/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/homesite/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/homesite/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/homesite/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -21,8 +22,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -94,7 +95,7 @@
       <workItem from="1585728948008" duration="3732000" />
       <workItem from="1585817850805" duration="219000" />
       <workItem from="1586164911944" duration="2045000" />
-      <workItem from="1586277567317" duration="5105000" />
+      <workItem from="1586277567317" duration="7505000" />
     </task>
     <servers />
   </component>

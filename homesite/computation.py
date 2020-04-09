@@ -1,4 +1,4 @@
-from homesite.models import Cutting, Fabric, StockEntry
+from homesite.models import Cutting, Fabric, StockEntry, Worker
 
 
 def stock_entry(level, fabric_type, glove_type, name, quantity):
@@ -17,7 +17,7 @@ def fabric_computation(fabric_type, quantity):
     fabric.save()
 
 
-def cutting_computation(fabric_type, glove_type, quantity, name):
+def cutting_computation(fabric_type, glove_type, quantity):
     try:
         cutting = Cutting.objects.get(fabric_name=fabric_type, cutting_type=glove_type)
     except Cutting.DoesNotExist:
@@ -39,6 +39,15 @@ def cutting_computation(fabric_type, glove_type, quantity, name):
 
     else:
         return 0
+
+
+def add_wages(quantity, name):
+    worker = Worker.objects.get(name=name)
+    rate = worker.rate
+    balance = worker.balance
+    wages = rate*quantity
+    worker.balance = balance + wages
+    worker.save()
 
 
 def view_entry(level, fabric_type, glove_type, name):

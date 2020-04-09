@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from .computation import *
 from .forms import ViewStockForm, AddStockForm, DeleteEntryForm, ViewEntryForm
-from homesite.models import StockEntry
 
 
 def home(request):
@@ -30,14 +29,14 @@ def addStock(request):
                 fabric_computation(fabric_type, quantity)
 
             if level == "Cutting":
-                flag = cutting_computation(fabric_type, glove_type, quantity, name)
+                flag = cutting_computation(fabric_type, glove_type, quantity)
                 if flag == 0:
                     msg = "Fabric is not sufficient for cutting"
                 elif flag == 2:
                     msg = "Glove type is not available for that fabric"
-
-            if msg == "":
-                msg = "submission successful"
+                else:
+                    add_wages(quantity, name)
+                    msg = "submission successful"
 
             return render(request, 'homesite/index.html', {'form': form, 'msg': msg})
 
@@ -99,3 +98,9 @@ def deleteEntry(request):
                 msg = "deleted successfully"
             form = DeleteEntryForm()
             return render(request, 'homesite/deleteentry.html', {'form': form, 'msg': msg})
+
+
+def worker(request):
+    worker = Worker.objects.all()
+    context = {'worker': worker}
+    return render(request, 'homesite/worker.html', context)

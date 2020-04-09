@@ -1,0 +1,21 @@
+{% extends 'homesite/base.html' %}
+
+{% block content %}
+    <h1>List of Workers</h1>
+    <table border="1" width="600">
+        <tr>
+            <td>Worker Name</td>
+            <td>rate</td>
+            <td>balance</td>
+        </tr>
+
+        {% for w in worker %}
+            <tr>
+            <td>{{ w.name }}</td>
+                <td>{{ w.rate }}</td>
+                <td>{{ w.balance }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}
