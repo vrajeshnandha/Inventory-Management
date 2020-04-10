@@ -1,4 +1,4 @@
-from homesite.models import Cutting, Fabric, StockEntry, Worker
+from homesite.models import Cutting, Fabric, StockEntry, Worker, Payment
 
 
 def stock_entry(level, fabric_type, glove_type, name, quantity):
@@ -50,12 +50,12 @@ def add_wages(quantity, name):
     worker.save()
 
 
-def view_entry(level, fabric_type, glove_type, name):
+def view_entry(level, fabric_type, glove_type, name, date):
     stockentry = StockEntry.objects.all()
 
     if level != "":
         stockentry = stockentry.filter(level=level)
-    #
+
     if fabric_type != "":
         stockentry = stockentry.filter(fabric_name=fabric_type)
 
@@ -64,6 +64,9 @@ def view_entry(level, fabric_type, glove_type, name):
 
     if name != "":
         stockentry = stockentry.filter(name=name)
+
+    if date is not None:
+        stockentry = stockentry.filter(date=date)
 
     return stockentry
 
@@ -76,5 +79,17 @@ def delete_entry(entry_id):
 
     entry.delete()
     return 1
+
+
+def add_payment(name, amount):
+
+    payment = Payment(name=name, amount=amount)
+    payment.save()
+
+    worker = Worker.objects.get(name=name)
+    balance = worker.balance
+
+    worker.balance = balance-amount
+    worker.save()
 
 

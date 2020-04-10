@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .computation import *
-from .forms import ViewStockForm, AddStockForm, DeleteEntryForm, ViewEntryForm
+from .forms import *
 
 
 def home(request):
@@ -62,7 +62,6 @@ def viewStock(request):
                 return render(request, 'homesite/cutting.html', context)
 
 
-# implement for date also
 def viewEntry(request):
     if request.method == 'GET':
         form = ViewEntryForm()
@@ -75,10 +74,9 @@ def viewEntry(request):
             fabric_type = form.cleaned_data['fabric_type']
             glove_type = form.cleaned_data['glove_type']
             name = form.cleaned_data['name']
-            print(level)
-            # date = form.cleaned_data['date']
+            date = form.cleaned_data['date']
 
-            stockentry = view_entry(level, fabric_type, glove_type, name)
+            stockentry = view_entry(level, fabric_type, glove_type, name, date)
             form = ViewEntryForm()
             return render(request, 'homesite/viewentry.html', {'form': form, 'stockentry': stockentry})
 
@@ -104,3 +102,19 @@ def worker(request):
     worker = Worker.objects.all()
     context = {'worker': worker}
     return render(request, 'homesite/worker.html', context)
+
+
+def payment(request):
+    if request.method == 'GET':
+        form = PaymentForm()
+        return render(request, 'homesite/payment.html', {'form': form})
+
+    else:
+        form = PaymentForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            amount = form.cleaned_data['amount']
+            add_payment(name,amount)
+            msg = "payment successful"
+            form = PaymentForm()
+            return render(request, 'homesite/payment.html', {'form': form, 'msg': msg})
