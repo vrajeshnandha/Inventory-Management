@@ -20,23 +20,28 @@ def addStock(request):
             glove_type = form.cleaned_data['glove_type']
             name = form.cleaned_data['name']
             quantity = form.cleaned_data['quantity']
-            stock_entry(level, fabric_type, glove_type, name, quantity)
+            date = form.cleaned_data['date']
+            stock_entry(level, fabric_type, glove_type, name, quantity, date)
 
             form = AddStockForm()
-            msg = ""
+            msg = "submission successful"
+
+            if level == "Raw_material":
+                add_raw_material(fabric_type, quantity)
 
             if level == "Fabric":
-                fabric_computation(fabric_type, quantity)
+                flag = fabric_computation(fabric_type, quantity)
+                if flag == 0:
+                    msg = "fabric is not sufficient for allocation"
 
             if level == "Cutting":
                 flag = cutting_computation(fabric_type, glove_type, quantity)
                 if flag == 0:
-                    msg = "Fabric is not sufficient for cutting"
-                elif flag == 2:
                     msg = "Glove type is not available for that fabric"
                 else:
+                    variance = calculate_variance(name, date, fabric_type, glove_type, quantity)
+                    msg = "variance is: " + str(round(variance, 2)) + " kg"
                     add_wages(quantity, name)
-                    msg = "submission successful"
 
             return render(request, 'homesite/index.html', {'form': form, 'msg': msg})
 

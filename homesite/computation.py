@@ -1,15 +1,19 @@
 from homesite.models import Cutting, Fabric, StockEntry, Worker, Payment
 
 
-def stock_entry(level, fabric_type, glove_type, name, quantity):
+def stock_entry(level, fabric_type, glove_type, name, quantity, date):
     if level == 'Fabric':
         glove_type = "NA"
 
-    entry = StockEntry(level=level, fabric_name=fabric_type, cutting_type=glove_type, name=name, quantity=quantity)
+    elif level == 'Raw_material':
+        glove_type = "NA"
+        name = "NA"
+
+    entry = StockEntry(level=level, fabric_name=fabric_type, cutting_type=glove_type, name=name, quantity=quantity, date=date)
     entry.save()
 
 
-def fabric_computation(fabric_type, quantity):
+def add_raw_material(fabric_type, quantity):
     fabric = Fabric.objects.get(fabric_name=fabric_type)
     q = fabric.quantity
 
@@ -17,28 +21,36 @@ def fabric_computation(fabric_type, quantity):
     fabric.save()
 
 
+def fabric_computation(fabric_type, quantity):
+    fabric = Fabric.objects.get(fabric_name=fabric_type)
+    q = fabric.quantity
+
+    if q < quantity:
+        return 0
+    fabric.quantity = q - quantity
+    fabric.save()
+
+
 def cutting_computation(fabric_type, glove_type, quantity):
     try:
         cutting = Cutting.objects.get(fabric_name=fabric_type, cutting_type=glove_type)
     except Cutting.DoesNotExist:
-        return 2
+        return 0
 
     q = cutting.quantity
-    w = cutting.weight
-
     cutting.quantity = q + quantity
+    cutting.save()
 
-    fabric = Fabric.objects.get(fabric_name=fabric_type)
-    q = fabric.quantity
 
-    if (q - quantity * (w / 1000)) >= 0:
-        fabric.quantity = q - quantity * (w / 1000)
-        fabric.save()
-        cutting.save()
-        return 1
+def calculate_variance(name, date, fabric_type, glove_type, quantity):
+    entry = StockEntry.objects.get(name=name, date=date, level="Fabric", fabric_name=fabric_type)
+    given_weight = entry.quantity
 
-    else:
-        return 0
+    cutting = Cutting.objects.get(fabric_name=fabric_type, cutting_type=glove_type)
+    w = cutting.weight
+    actual_weight = quantity * (w / 1000)
+
+    return given_weight - actual_weight
 
 
 def add_wages(quantity, name):
