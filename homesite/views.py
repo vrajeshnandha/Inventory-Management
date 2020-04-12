@@ -40,7 +40,7 @@ def addStock(request):
                     msg = "Glove type is not available for that fabric"
                 else:
                     variance = calculate_variance(name, date, fabric_type, glove_type, quantity)
-                    msg = "variance is: " + str(round(variance, 2)) + " kg"
+                    msg = "variance is: " + str(round(variance, 3)) + " kg"
                     add_wages(quantity, name)
 
             return render(request, 'homesite/index.html', {'form': form, 'msg': msg})

@@ -1,4 +1,4 @@
-from homesite.models import Cutting, Fabric, StockEntry, Worker, Payment
+from homesite.models import Cutting, Fabric, StockEntry, Worker, Payment, Variance
 
 
 def stock_entry(level, fabric_type, glove_type, name, quantity, date):
@@ -49,8 +49,12 @@ def calculate_variance(name, date, fabric_type, glove_type, quantity):
     cutting = Cutting.objects.get(fabric_name=fabric_type, cutting_type=glove_type)
     w = cutting.weight
     actual_weight = quantity * (w / 1000)
+    var = given_weight - actual_weight
 
-    return given_weight - actual_weight
+    variance = Variance(date=date, name=name, fabric_name=fabric_type, variance=round(var, 3))
+    variance.save()
+
+    return var
 
 
 def add_wages(quantity, name):

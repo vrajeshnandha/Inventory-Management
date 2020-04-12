@@ -49,3 +49,13 @@ class Payment(models.Model):
 
     def __str__(self):
         return self.payment_id
+
+
+class Variance(models.Model):
+    date = models.DateField()
+    name = models.CharField(max_length=200)
+    variance = models.FloatField()
+    fabric_name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.date
