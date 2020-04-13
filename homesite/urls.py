@@ -10,4 +10,5 @@ urlpatterns = [
     path('deleteentry', views.deleteEntry, name='deleteentry'),
     path('worker', views.worker, name='worker'),
     path('payment', views.payment, name='payment'),
+    path('variacne', views.list_variance, name='variance'),
 ]

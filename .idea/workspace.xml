@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4335e7a9-a99b-46ee-a307-f9fd39ae3c34" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/homesite/migrations/0009_variance.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/homesite/filters.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/homesite/templates/homesite/variance_list.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/homesite/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/homesite/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/homesite/computation.py" beforeDir="false" afterPath="$PROJECT_DIR$/homesite/computation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/homesite/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/homesite/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/homesite/templates/homesite/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/homesite/templates/homesite/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/homesite/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/homesite/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/homesite/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/homesite/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -96,7 +96,8 @@
       <workItem from="1586277567317" duration="7505000" />
       <workItem from="1586533194045" duration="4612000" />
       <workItem from="1586625173300" duration="604000" />
-      <workItem from="1586674982727" duration="4618000" />
+      <workItem from="1586674982727" duration="5261000" />
+      <workItem from="1586766535635" duration="2475000" />
     </task>
     <servers />
   </component>
@@ -112,9 +113,9 @@
       <screen x="65" y="24" width="1855" height="1056" />
     </state>
     <state x="486" y="174" key="SettingsEditor/65.24.1855.1056@65.24.1855.1056" timestamp="1585128057296" />
-    <state x="654" y="381" key="com.intellij.ide.util.TipDialog" timestamp="1586674983147">
+    <state x="654" y="381" key="com.intellij.ide.util.TipDialog" timestamp="1586766533551">
       <screen x="65" y="24" width="1855" height="1056" />
     </state>
-    <state x="654" y="381" key="com.intellij.ide.util.TipDialog/65.24.1855.1056@65.24.1855.1056" timestamp="1586674983147" />
+    <state x="654" y="381" key="com.intellij.ide.util.TipDialog/65.24.1855.1056@65.24.1855.1056" timestamp="1586766533551" />
   </component>
 </project>

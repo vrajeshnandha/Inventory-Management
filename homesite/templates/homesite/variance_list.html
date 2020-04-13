@@ -1,0 +1,25 @@
+{% extends 'homesite/base.html' %}
+
+{% block content %}
+  <form method="get">
+    {{ filter.form.as_p }}
+    <button type="submit">Search</button>
+  </form>
+  <table border="1" width="600">
+        <tr>
+            <td>Date</td>
+            <td>Worker Name</td>
+            <td>Fabric Type</td>
+            <td>Variance (Kg)</td>
+        </tr>
+
+        {% for var in filter.qs %}
+            <tr>
+                <td>{{ var.date }}</td>
+                <td>{{ var.name }}</td>
+                <td>{{ var.fabric_name }}</td>
+                <td>{{ var.variance }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

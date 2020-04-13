@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .computation import *
 from .forms import *
-
+from .filters import VarianceFilter
 
 def home(request):
     return render(request, 'homesite/base.html')
@@ -123,3 +123,9 @@ def payment(request):
             msg = "payment successful"
             form = PaymentForm()
             return render(request, 'homesite/payment.html', {'form': form, 'msg': msg})
+
+
+def list_variance(request):
+    variance = Variance.objects.all()
+    variance_filter = VarianceFilter(request.GET, queryset=variance)
+    return render(request, 'homesite/variance_list.html', {'filter': variance_filter})
