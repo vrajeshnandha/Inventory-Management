@@ -39,14 +39,6 @@ class DeleteEntryForm(forms.Form):
     entry_id = forms.CharField()
 
 
-class ViewEntryForm(forms.Form):
-    level = forms.CharField(widget=forms.Select(choices=[('', '---SELECT ONE---'), ] + LEVEL_CHOICES), required=False)
-    fabric_type = forms.CharField(widget=forms.Select(choices=[('', '---SELECT ONE---'), ] + FABRIC_CHOICES), required=False)
-    glove_type = forms.CharField(widget=forms.Select(choices=[('', '---SELECT ONE---'), ] + GLOVES_CHOICES), required=False)
-    name = forms.CharField(widget=forms.Select(choices=[('', '---SELECT ONE---'), ] + WORKER_CHOICES), required=False)
-    date = forms.DateField(widget=forms.SelectDateWidget(empty_label=("Choose Year", "Choose Month", "Choose Day"), years=year_range), required=False)
-
-
 class PaymentForm(forms.Form):
     name = forms.CharField(widget=forms.Select(choices=WORKER_CHOICES))
     amount = forms.FloatField()

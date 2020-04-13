@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from .computation import *
 from .forms import *
-from .filters import VarianceFilter
+from .filters import *
+
 
 def home(request):
     return render(request, 'homesite/base.html')
@@ -68,22 +69,9 @@ def viewStock(request):
 
 
 def viewEntry(request):
-    if request.method == 'GET':
-        form = ViewEntryForm()
-        return render(request, 'homesite/viewstock.html', {'form': form})
-
-    else:
-        form = ViewEntryForm(request.POST)
-        if form.is_valid():
-            level = form.cleaned_data['level']
-            fabric_type = form.cleaned_data['fabric_type']
-            glove_type = form.cleaned_data['glove_type']
-            name = form.cleaned_data['name']
-            date = form.cleaned_data['date']
-
-            stockentry = view_entry(level, fabric_type, glove_type, name, date)
-            form = ViewEntryForm()
-            return render(request, 'homesite/viewentry.html', {'form': form, 'stockentry': stockentry})
+    entry = StockEntry.objects.all()
+    entry_filter = ViewEntryFilter(request.GET, queryset=entry)
+    return render(request, 'homesite/viewentry.html', {'filter': entry_filter})
 
 
 def deleteEntry(request):
@@ -105,8 +93,8 @@ def deleteEntry(request):
 
 def worker(request):
     worker = Worker.objects.all()
-    context = {'worker': worker}
-    return render(request, 'homesite/worker.html', context)
+    worker_filter = WorkerFilter(request.GET, queryset=worker)
+    return render(request, 'homesite/worker.html', {'filter': worker_filter})
 
 
 def payment(request):

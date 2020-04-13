@@ -1,12 +1,11 @@
 {% extends 'homesite/base.html' %}
 
 {% block content %}
-     <div class="container">
+    <div class="container">
         <div class="row">
             <div class="col-sm-6 mx-auto" style="margin-top: 70px">
-                <form  method="post">
-                    {% csrf_token %}
-                    {{ form.as_p }}
+                <form  method="get">
+                    {{ filter.form.as_p }}
                     <div class="pull-right">
                         <button type="submit" class="btn btn-primary float-right">Submit</button>
                     </div>
@@ -16,27 +15,35 @@
         </div>
 
     </div>
-    <table border="1" width="600">
+    <br>
+    <table class="table table-bordered">
+        <thead>
         <tr>
-            <td>Entry Id</td>
-            <td>Date</td>
-            <td>Level</td>
-            <td>Fabric Name</td>
-            <td>Cutting Type</td>
-            <td>Name</td>
-            <td>Quantity</td>
+            <th>Entry Id</th>
+            <th>Level</th>
+            <th>Fabric Type</th>
+            <th>Cutting Type</th>
+            <th>Name</th>
+            <th>Date</th>
+            <th>Quantity</th>
         </tr>
-
-        {% for i in stockentry %}
+        </thead>
+        <tbody>
+        {% for i in filter.qs %}
             <tr>
                 <td>{{ i.entry_id }}</td>
-                <td>{{ i.date }}</td>
                 <td>{{ i.level }}</td>
                 <td>{{ i.fabric_name }}</td>
                 <td>{{ i.cutting_type }}</td>
                 <td>{{ i.name }}</td>
+                <td>{{ i.date }}</td>
                 <td>{{ i.quantity }}</td>
             </tr>
+        {% empty %}
+            <tr>
+                <td colspan="5">No data</td>
+            </tr>
         {% endfor %}
+        </tbody>
     </table>
 {% endblock %}
