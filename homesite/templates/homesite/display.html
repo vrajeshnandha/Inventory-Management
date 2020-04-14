@@ -1,7 +1,7 @@
 {% extends 'homesite/base.html' %}
 
 {% block content %}
-    <h1>List of Cutting Material</h1>
+    <h2>{{ info }}</h2>
     <table border="1" width="600">
         <tr>
             <td>Gloves Name</td>
@@ -9,11 +9,11 @@
             <td>Quantity (Dz)</td>
         </tr>
 
-        {% for c in cutting %}
+        {% for t in table %}
             <tr>
-            <td>{{ c.cutting_type }}</td>
-                <td>{{ c.fabric_name }}</td>
-                <td>{{ c.quantity }}</td>
+            <td>{{ t.cutting_type }}</td>
+                <td>{{ t.fabric_name }}</td>
+                <td>{{ t.quantity }}</td>
             </tr>
         {% endfor %}
     </table>

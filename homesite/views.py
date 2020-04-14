@@ -22,7 +22,6 @@ def addStock(request):
             name = form.cleaned_data['name']
             quantity = form.cleaned_data['quantity']
             date = form.cleaned_data['date']
-            stock_entry(level, fabric_type, glove_type, name, quantity, date)
 
             form = AddStockForm()
             msg = "submission successful"
@@ -42,7 +41,28 @@ def addStock(request):
                 else:
                     variance = calculate_variance(name, date, fabric_type, glove_type, quantity)
                     msg = "variance is: " + str(round(variance, 3)) + " kg"
-                    add_wages(quantity, name)
+                    add_wages(quantity, name, level)
+
+            if level == "Sewing":
+                flag = sewing_computation(fabric_type, glove_type, quantity)
+                if flag == 0:
+                    msg = "Glove type is not available for that fabric"
+                elif flag == 1:
+                    msg = "not sufficient material for sewing"
+                else:
+                    add_wages(quantity, name, level)
+
+            if level == "Packing":
+                flag = packing_computation(fabric_type, glove_type, quantity)
+                if flag == 0:
+                    msg = "Glove type is not available for that fabric"
+                elif flag == 1:
+                    msg = "not sufficient material for packing"
+                else:
+                    add_wages(quantity, name, level)
+
+            if msg == "submission successful":
+                stock_entry(level, fabric_type, glove_type, name, quantity, date)
 
             return render(request, 'homesite/index.html', {'form': form, 'msg': msg})
 
@@ -63,9 +83,19 @@ def viewStock(request):
                 return render(request, 'homesite/fabric.html', context)
 
             elif level == 'Cutting':
-                cutting = Cutting.objects.all()
-                context = {'cutting': cutting}
-                return render(request, 'homesite/cutting.html', context)
+                table = Cutting.objects.all()
+                context = {'table': table, 'info': "Cutting Stock"}
+                return render(request, 'homesite/display.html', context)
+
+            elif level == 'Sewing':
+                table = Sewing.objects.all()
+                context = {'table': table, 'info': "Sewing Stock"}
+                return render(request, 'homesite/display.html', context)
+
+            elif level == 'Packing':
+                table = Packing.objects.all()
+                context = {'table': table, 'info': "Packing Stock"}
+                return render(request, 'homesite/display.html', context)
 
 
 def viewEntry(request):

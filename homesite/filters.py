@@ -8,15 +8,17 @@ import datetime
 LEVEL_CHOICES = [
     ('Fabric', 'Fabric'),
     ('Cutting', 'Cutting'),
+    ('Sewing', 'Sewing'),
+    ('Packing', 'Packing')
 ]
 
 fabric = Fabric.objects.all()
 cutting = Cutting.objects.order_by('cutting_type').values_list('cutting_type', flat=True).distinct()
-worker = Worker.objects.all()
+worker = Worker.objects.order_by('name').values_list('name', flat=True).distinct()
 
 FABRIC_CHOICES = [(f.fabric_name, f.fabric_name) for f in fabric]
 GLOVES_CHOICES = [(cutting[i], cutting[i]) for i in range(cutting.count())]
-WORKER_CHOICES = [(w.name, w.name) for w in worker]
+WORKER_CHOICES = [(worker[i], worker[i]) for i in range(worker.count())]
 
 cur_year = datetime.datetime.today().year
 year_range = tuple([i for i in range(cur_year - 2, cur_year + 1)])
@@ -45,6 +47,8 @@ class ViewEntryFilter(django_filters.FilterSet):
 
 
 class WorkerFilter(django_filters.FilterSet):
+    level = django_filters.ChoiceFilter(choices=LEVEL_CHOICES)
+    name = django_filters.ChoiceFilter(choices=WORKER_CHOICES)
 
     class Meta:
         model = Worker

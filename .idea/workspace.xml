@@ -2,27 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4335e7a9-a99b-46ee-a307-f9fd39ae3c34" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/homesite/migrations/0010_worker_level.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_widget_tweaks-1.4.8.dist-info/INSTALLER" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_widget_tweaks-1.4.8.dist-info/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_widget_tweaks-1.4.8.dist-info/METADATA" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_widget_tweaks-1.4.8.dist-info/RECORD" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_widget_tweaks-1.4.8.dist-info/WHEEL" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_widget_tweaks-1.4.8.dist-info/top_level.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/widget_tweaks/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/widget_tweaks/models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/widget_tweaks/templatetags/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/widget_tweaks/templatetags/widget_tweaks.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/widget_tweaks/tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/homesite/migrations/0011_packing_sewing.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/homesite/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/homesite/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/homesite/computation.py" beforeDir="false" afterPath="$PROJECT_DIR$/homesite/computation.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/homesite/filters.py" beforeDir="false" afterPath="$PROJECT_DIR$/homesite/filters.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/homesite/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/homesite/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/homesite/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/homesite/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/homesite/templates/homesite/variance_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/homesite/templates/homesite/variance_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/homesite/templates/homesite/viewentry.html" beforeDir="false" afterPath="$PROJECT_DIR$/homesite/templates/homesite/viewentry.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/homesite/templates/homesite/worker.html" beforeDir="false" afterPath="$PROJECT_DIR$/homesite/templates/homesite/worker.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/homesite/templates/homesite/cutting.html" beforeDir="false" afterPath="$PROJECT_DIR$/homesite/templates/homesite/display.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/homesite/templates/homesite/fabric.html" beforeDir="false" afterPath="$PROJECT_DIR$/homesite/templates/homesite/fabric.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/homesite/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/homesite/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vnsafety/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/vnsafety/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,7 +105,8 @@
       <workItem from="1586533194045" duration="4612000" />
       <workItem from="1586625173300" duration="604000" />
       <workItem from="1586674982727" duration="5261000" />
-      <workItem from="1586766535635" duration="7475000" />
+      <workItem from="1586766535635" duration="7766000" />
+      <workItem from="1586880926354" duration="5332000" />
     </task>
     <servers />
   </component>
@@ -135,9 +125,23 @@
       <screen x="65" y="24" width="1855" height="1056" />
     </state>
     <state x="486" y="174" key="SettingsEditor/65.24.1855.1056@65.24.1855.1056" timestamp="1585128057296" />
-    <state x="654" y="381" key="com.intellij.ide.util.TipDialog" timestamp="1586766533551">
+    <state x="654" y="381" key="com.intellij.ide.util.TipDialog" timestamp="1586880992166">
       <screen x="65" y="24" width="1855" height="1056" />
     </state>
-    <state x="654" y="381" key="com.intellij.ide.util.TipDialog/65.24.1855.1056@65.24.1855.1056" timestamp="1586766533551" />
+    <state x="654" y="381" key="com.intellij.ide.util.TipDialog/65.24.1855.1056@65.24.1855.1056" timestamp="1586880992166" />
+    <state x="655" y="236" width="672" height="678" key="search.everywhere.popup" timestamp="1586884851037">
+      <screen x="65" y="24" width="1855" height="1056" />
+    </state>
+    <state x="655" y="236" width="672" height="678" key="search.everywhere.popup/65.24.1855.1056@65.24.1855.1056" timestamp="1586884851037" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/homesite/filters.py</url>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

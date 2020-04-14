@@ -5,6 +5,8 @@ from .models import *
 
 admin.site.register(Fabric)
 admin.site.register(Cutting)
+admin.site.register(Sewing)
+admin.site.register(Packing)
 admin.site.register(StockEntry)
 admin.site.register(Worker)
 admin.site.register(Payment)

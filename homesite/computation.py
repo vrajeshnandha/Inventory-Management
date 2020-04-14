@@ -1,4 +1,4 @@
-from homesite.models import Cutting, Fabric, StockEntry, Worker, Payment, Variance
+from homesite.models import *
 
 
 def stock_entry(level, fabric_type, glove_type, name, quantity, date):
@@ -37,9 +37,50 @@ def cutting_computation(fabric_type, glove_type, quantity):
     except Cutting.DoesNotExist:
         return 0
 
-    q = cutting.quantity
-    cutting.quantity = q + quantity
+    cutting.quantity = cutting.quantity + quantity
     cutting.save()
+
+
+def sewing_computation(fabric_type, glove_type, quantity):
+    try:
+        sewing = Sewing.objects.get(fabric_name=fabric_type, cutting_type=glove_type)
+    except Sewing.DoesNotExist:
+        return 0
+
+    try:
+        cutting = Cutting.objects.get(fabric_name=fabric_type, cutting_type=glove_type)
+    except Cutting.DoesNotExist:
+        return 0
+
+    q = cutting.quantity
+    if q < quantity:
+        return 1
+
+    sewing.quantity = sewing.quantity + quantity
+    cutting.quantity = q - quantity
+    sewing.save()
+    cutting.save()
+
+
+def packing_computation(fabric_type, glove_type, quantity):
+    try:
+        packing = Packing.objects.get(fabric_name=fabric_type, cutting_type=glove_type)
+    except Packing.DoesNotExist:
+        return 0
+
+    try:
+        sewing = Sewing.objects.get(fabric_name=fabric_type, cutting_type=glove_type)
+    except Sewing.DoesNotExist:
+        return 0
+
+    q = sewing.quantity
+    if q < quantity:
+        return 1
+
+    packing.quantity = packing.quantity + quantity
+    sewing.quantity = q - quantity
+    packing.save()
+    sewing.save()
 
 
 def calculate_variance(name, date, fabric_type, glove_type, quantity):
@@ -57,34 +98,13 @@ def calculate_variance(name, date, fabric_type, glove_type, quantity):
     return var
 
 
-def add_wages(quantity, name):
-    worker = Worker.objects.get(name=name)
+def add_wages(quantity, name, level):
+    worker = Worker.objects.get(name=name, level=level)
     rate = worker.rate
     balance = worker.balance
     wages = rate*quantity
     worker.balance = balance + wages
     worker.save()
-
-
-def view_entry(level, fabric_type, glove_type, name, date):
-    stockentry = StockEntry.objects.all()
-
-    if level != "":
-        stockentry = stockentry.filter(level=level)
-
-    if fabric_type != "":
-        stockentry = stockentry.filter(fabric_name=fabric_type)
-
-    if glove_type != "":
-        stockentry = stockentry.filter(cutting_type=glove_type)
-
-    if name != "":
-        stockentry = stockentry.filter(name=name)
-
-    if date is not None:
-        stockentry = stockentry.filter(date=date)
-
-    return stockentry
 
 
 def delete_entry(entry_id):
@@ -102,10 +122,22 @@ def add_payment(name, amount):
     payment = Payment(name=name, amount=amount)
     payment.save()
 
-    worker = Worker.objects.get(name=name)
-    balance = worker.balance
+    worker = Worker.objects.filter(name=name)
+    if worker.count() > 1:
+        if worker[0].balance > worker[1].balance:
+            w = Worker.objects.get(name=name, level=worker[0].level)
+            w.balance = w.balance - amount
+            w.save()
 
-    worker.balance = balance-amount
-    worker.save()
+        else:
+            w = Worker.objects.get(name=name, level=worker[1].level)
+            w.balance = w.balance - amount
+            w.save()
+
+    else:
+        worker = Worker.objects.get(name=name)
+        worker.balance = worker.balance - amount
+        worker.save()
+
 
 
