@@ -11,7 +11,7 @@ def home(request):
 def addStock(request):
     if request.method == 'GET':
         form = AddStockForm()
-        return render(request, 'homesite/index.html', {'form': form})
+        return render(request, 'homesite/addstock.html', {'form': form})
 
     else:
         form = AddStockForm(request.POST)
@@ -64,7 +64,7 @@ def addStock(request):
             if msg == "submission successful":
                 stock_entry(level, fabric_type, glove_type, name, quantity, date)
 
-            return render(request, 'homesite/index.html', {'form': form, 'msg': msg})
+            return render(request, 'homesite/addstock.html', {'form': form, 'msg': msg})
 
 
 def viewStock(request):
@@ -147,3 +147,38 @@ def list_variance(request):
     variance = Variance.objects.all()
     variance_filter = VarianceFilter(request.GET, queryset=variance)
     return render(request, 'homesite/variance_list.html', {'filter': variance_filter})
+
+
+def add_invoice(request):
+    if request.method == 'GET':
+        form = InvoiceForm()
+        return render(request, 'homesite/addinvoice.html', {'form': form})
+
+    else:
+        form = InvoiceForm(request.POST)
+        if form.is_valid():
+            incoice_no = form.cleaned_data['invoice_no']
+            fabric_type = form.cleaned_data['fabric_type']
+            glove_type = form.cleaned_data['glove_type']
+            quantity = form.cleaned_data['quantity']
+            date = form.cleaned_data['date']
+
+            form = AddStockForm()
+            msg = "submission successful"
+
+            flag = invoice_compute(fabric_type, glove_type, quantity)
+            if flag == 0:
+                msg = "Glove type is not available for that fabric"
+            elif flag == 1:
+                msg = "not sufficient material for delivery"
+
+            if msg == "submission successful":
+                invoice_entry(incoice_no, fabric_type, glove_type, quantity, date)
+
+            return render(request, 'homesite/addinvoice.html', {'form': form, 'msg': msg})
+
+
+def view_invoice(request):
+    entry = Invoice.objects.all()
+    entry_filter = ViewInvoiceFilter(request.GET, queryset=entry)
+    return render(request, 'homesite/viewinvoice.html', {'filter': entry_filter})

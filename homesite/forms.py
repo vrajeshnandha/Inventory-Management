@@ -44,3 +44,11 @@ class DeleteEntryForm(forms.Form):
 class PaymentForm(forms.Form):
     name = forms.CharField(widget=forms.Select(choices=WORKER_CHOICES))
     amount = forms.FloatField()
+
+
+class InvoiceForm(forms.Form):
+    invoice_no = forms.CharField()
+    fabric_type = forms.CharField(widget=forms.Select(choices=FABRIC_CHOICES))
+    glove_type = forms.CharField(widget=forms.Select(choices=GLOVES_CHOICES))
+    quantity = forms.FloatField()
+    date = forms.DateField(initial=datetime.date.today, widget=forms.SelectDateWidget(years=year_range))

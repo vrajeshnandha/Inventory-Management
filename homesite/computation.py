@@ -140,4 +140,20 @@ def add_payment(name, amount):
         worker.save()
 
 
+def invoice_compute(fabric_type, glove_type, quantity):
+    try:
+        packing = Packing.objects.get(fabric_name=fabric_type, cutting_type=glove_type)
+    except Packing.DoesNotExist:
+        return 0
 
+    q = packing.quantity
+    if q < quantity:
+        return 1
+
+    packing.quantity = q - quantity
+    packing.save()
+
+
+def invoice_entry(invoice_no, fabric_type, glove_type, quantity, date):
+    entry = Invoice(invoice_no=invoice_no, fabric_name=fabric_type, cutting_type=glove_type, quantity=quantity, date=date)
+    entry.save()

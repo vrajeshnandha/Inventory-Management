@@ -1,0 +1,47 @@
+{% extends 'homesite/base.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 mx-auto" style="margin-top: 70px">
+                <form  method="get">
+                    {{ filter.form.as_p }}
+                    <div class="pull-right">
+                        <button type="submit" class="btn btn-primary float-right">Submit</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <br>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Entry Id</th>
+            <th>Invoice No</th>
+            <th>Fabric Type</th>
+            <th>Cutting Type</th>
+            <th>Date</th>
+            <th>Quantity</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for i in filter.qs %}
+            <tr>
+                <td>{{ i.entry_id }}</td>
+                <td>{{ i.invoice_no }}</td>
+                <td>{{ i.fabric_name }}</td>
+                <td>{{ i.cutting_type }}</td>
+                <td>{{ i.date }}</td>
+                <td>{{ i.quantity }}</td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="5">No data</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

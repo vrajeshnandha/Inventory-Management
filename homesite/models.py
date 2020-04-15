@@ -78,3 +78,15 @@ class Packing(models.Model):
 
     def __str__(self):
         return self.cutting_type
+
+
+class Invoice(models.Model):
+    entry_id = models.AutoField(primary_key=True)
+    invoice_no = models.CharField(max_length=10)
+    fabric_name = models.CharField(max_length=100)
+    cutting_type = models.CharField(max_length=200)
+    quantity = models.FloatField()
+    date = models.DateField()
+
+    def __str__(self):
+        return self.entry_id

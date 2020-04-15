@@ -2,15 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4335e7a9-a99b-46ee-a307-f9fd39ae3c34" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/homesite/migrations/0011_packing_sewing.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/homesite/migrations/0012_billing.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/homesite/migrations/0013_auto_20200415_1539.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/homesite/migrations/0014_auto_20200415_1600.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/homesite/templates/homesite/addinvoice.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/homesite/templates/homesite/viewinvoice.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/homesite/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/homesite/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/homesite/computation.py" beforeDir="false" afterPath="$PROJECT_DIR$/homesite/computation.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/homesite/filters.py" beforeDir="false" afterPath="$PROJECT_DIR$/homesite/filters.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/homesite/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/homesite/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/homesite/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/homesite/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/homesite/templates/homesite/cutting.html" beforeDir="false" afterPath="$PROJECT_DIR$/homesite/templates/homesite/display.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/homesite/templates/homesite/fabric.html" beforeDir="false" afterPath="$PROJECT_DIR$/homesite/templates/homesite/fabric.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/homesite/templates/homesite/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/homesite/templates/homesite/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/homesite/templates/homesite/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/homesite/templates/homesite/addstock.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/homesite/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/homesite/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/homesite/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/homesite/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -106,7 +110,8 @@
       <workItem from="1586625173300" duration="604000" />
       <workItem from="1586674982727" duration="5261000" />
       <workItem from="1586766535635" duration="7766000" />
-      <workItem from="1586880926354" duration="5332000" />
+      <workItem from="1586880926354" duration="6208000" />
+      <workItem from="1586944564302" duration="2587000" />
     </task>
     <servers />
   </component>
@@ -125,10 +130,10 @@
       <screen x="65" y="24" width="1855" height="1056" />
     </state>
     <state x="486" y="174" key="SettingsEditor/65.24.1855.1056@65.24.1855.1056" timestamp="1585128057296" />
-    <state x="654" y="381" key="com.intellij.ide.util.TipDialog" timestamp="1586880992166">
+    <state x="654" y="381" key="com.intellij.ide.util.TipDialog" timestamp="1586944563118">
       <screen x="65" y="24" width="1855" height="1056" />
     </state>
-    <state x="654" y="381" key="com.intellij.ide.util.TipDialog/65.24.1855.1056@65.24.1855.1056" timestamp="1586880992166" />
+    <state x="654" y="381" key="com.intellij.ide.util.TipDialog/65.24.1855.1056@65.24.1855.1056" timestamp="1586944563118" />
     <state x="655" y="236" width="672" height="678" key="search.everywhere.popup" timestamp="1586884851037">
       <screen x="65" y="24" width="1855" height="1056" />
     </state>

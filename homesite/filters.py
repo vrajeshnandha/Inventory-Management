@@ -39,7 +39,8 @@ class ViewEntryFilter(django_filters.FilterSet):
     fabric_name = django_filters.ChoiceFilter(choices=FABRIC_CHOICES)
     cutting_type = django_filters.ChoiceFilter(choices=GLOVES_CHOICES)
     name = django_filters.ChoiceFilter(choices=WORKER_CHOICES)
-    date = django_filters.DateFilter(widget=forms.SelectDateWidget(empty_label=("Choose Year", "Choose Month", "Choose Day"), years=year_range))
+    date = django_filters.DateFilter(
+        widget=forms.SelectDateWidget(empty_label=("Choose Year", "Choose Month", "Choose Day"), years=year_range))
 
     class Meta:
         model = StockEntry
@@ -53,3 +54,14 @@ class WorkerFilter(django_filters.FilterSet):
     class Meta:
         model = Worker
         fields = ['level', 'name']
+
+
+class ViewInvoiceFilter(django_filters.FilterSet):
+    fabric_name = django_filters.ChoiceFilter(choices=FABRIC_CHOICES)
+    cutting_type = django_filters.ChoiceFilter(choices=GLOVES_CHOICES)
+    date = django_filters.DateFilter(
+        widget=forms.SelectDateWidget(empty_label=("Choose Year", "Choose Month", "Choose Day"), years=year_range))
+
+    class Meta:
+        model = Invoice
+        fields = ['invoice_no', 'fabric_name', 'cutting_type', 'date']
